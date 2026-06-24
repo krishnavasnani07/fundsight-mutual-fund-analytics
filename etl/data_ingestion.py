@@ -27,3 +27,13 @@ for file in DATA_DIR.glob("*.csv"):
 
     print("\nFirst 5 Rows:")
     print(df.head())
+
+
+    '''
+    Dataset: 04_monthly_sip_inflows.csv
+    Issue:
+    12 missing values found in yoy_growth_pct.
+
+    Likely cause:
+    YoY growth unavailable for first year observations.
+    '''
