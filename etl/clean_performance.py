@@ -41,8 +41,23 @@ numeric_cols = [
 
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors="coerce")
+# Remove rows with missing numeric values
+df = df.dropna(subset=numeric_cols)
 
+# Keep only valid expense ratios
+df = df[
+    (df["expense_ratio_pct"] >= 0.1) &
+    (df["expense_ratio_pct"] <= 2.5)
+]
+
+# Flag suspicious return values
+df["anomaly_flag"] = (
+    (df["return_1yr_pct"].abs() > 100) |
+    (df["return_3yr_pct"].abs() > 300) |
+    (df["return_5yr_pct"].abs() > 500)
+)
 df.to_csv(output_file, index=False)
 
 print(f"Saved: {output_file}")
 print(df.shape)
+print("Anomalies found:", df["anomaly_flag"].sum())

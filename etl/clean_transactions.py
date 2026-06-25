@@ -23,14 +23,25 @@ df = df.dropna(
         "investor_id",
         "amfi_code",
         "transaction_type",
-        "amount_inr"
+        "amount_inr",
+        "transaction_date",
     ]
 )
+
+# Keep only positive transaction amounts
+df = df[df["amount_inr"] > 0]
 
 # Standardize text columns
 df["transaction_type"] = df["transaction_type"].str.strip().str.upper()
 df["state"] = df["state"].str.strip().str.title()
 df["city"] = df["city"].str.strip().str.title()
+
+# Standardize KYC status
+df["kyc_status"] = df["kyc_status"].str.strip().str.upper()
+
+valid_kyc = ["VERIFIED", "PENDING", "REJECTED"]
+
+df = df[df["kyc_status"].isin(valid_kyc)]
 
 df.to_csv(output_file, index=False)
 

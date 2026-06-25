@@ -65,4 +65,29 @@ ORDER BY avg_sharpe DESC;
 
 
 
+-- Top 5 Funds by AUM
 
+SELECT
+    scheme_name,
+    aum_crore
+FROM scheme_performance
+ORDER BY aum_crore DESC
+LIMIT 5;
+
+
+-- Expense Ratio Less Than 1%
+
+SELECT
+    scheme_name,
+    expense_ratio_pct
+FROM scheme_performance
+WHERE expense_ratio_pct < 1;
+
+
+-- High Risk Funds
+
+SELECT
+    scheme_name,
+    risk_grade
+FROM scheme_performance
+WHERE risk_grade = 'High';
