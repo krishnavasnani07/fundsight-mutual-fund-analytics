@@ -1,4 +1,12 @@
-# 📊 FundSight — Mutual Fund Analytics Platform
+<p align="center">
+  <img src="assets/banner.png" width="100%">
+</p>
+
+<h1 align="center">FundSight</h1>
+
+<p align="center">
+Mutual Fund Analytics Platform
+</p>
 
 A data analytics platform for ingesting, cleaning, storing, and analyzing mutual fund datasets. The project implements a complete ETL pipeline, SQLite-based data warehouse, analytical SQL queries, and reporting modules to generate insights from mutual fund performance and investor transaction data.
 
