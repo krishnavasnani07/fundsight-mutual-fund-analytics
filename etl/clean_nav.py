@@ -14,7 +14,7 @@ print("Original Shape:", nav_df.shape)
 # Convert date column
 nav_df["date"] = pd.to_datetime(
     nav_df["date"],
-    dayfirst=True,
+    format="%Y-%m-%d",
     errors="coerce"
 )
 
